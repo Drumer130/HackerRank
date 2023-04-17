@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*LONELY INTEGER*/
+      function lonelyinteger(a) {
+        let result = {}
+
+        for (let val of a) {
+          result[val] = (result[val] || 0) + 1
+        }
+
+        for (let key in result) {
+          if (result[key] === 1) {
+            return key
+          }
+        }
+      }
+
+      //GRADING STUDENTS
+      function gradingStudents(grades) {
+        let result = []
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] < 38) {
+            result.push(grades[i])
+          } else {
+            if ((grades[i] + 1) % 5 == 0) {
+              result.push(grades[i] + 1)
+            } else if ((grades[i] + 2) % 5 == 0) {
+              result.push(grades[i] + 2)
+            } else {
+              result.push(grades[i])
+            }
+          }
+        }
+        return result
+      }
+
+      //FLIPPING BITS
+      function flippingBits(n) {
+        return 2 ** 32 - 1 - n
+      }
+
+      //DIAGONAL DIFFERENCE
+      function diagonalDifference(arr) {
+        let totalOne = 0
+        let totalTwo = 0
+
+        for (let i = 0; i < arr.length; i++) {
+          totalOne += arr[i][i]
+          totalTwo += arr[i][arr.length - (1 + i)]
+        }
+
+        return Math.abs(totalOne - totalTwo)
+      }
+
+      //COUNTING SORT 1
+      function countingSort(arr) {
+        let result = new Array(100).fill(0)
+        for (let val of arr) {
+          result[val]++
+        }
+        return result
+      }
+
+      //COUNTING VALLEYS
+      function countingValleys(steps, path) {
+        let mountain = 0
+        let valley = 0
+        let sealevel = 0
+        for (let i = 0; i < path.length; i++) {
+          if (path[i] == 'U') {
+            if (sealevel === 0) {
+              mountain++
+            }
+            sealevel++
+          } else if (path[i] == 'D') {
+            if (sealevel === 0) {
+              valley++
+            }
+            sealevel--
+          }
+        }
+        return valley
+      }
+
+      //PANGRAMS
+      function pangrams(s) {
+        const sent = s.toLowerCase()
+        const setString = new Set(sent)
+        const alpha = 'abcdefghijklmnopqrstuvwxyz'
+        const setAlpha = new Set(alpha)
+        if (setString.size < 26) {
+          return 'not pangram'
+        } else if (difference(setAlpha, setString).size == 0) {
+          return 'pangram'
+        } else {
+          return 'not pangram'
+        }
+        function difference(setA, setB) {
+          let _diff = new Set(setA)
+          for (let elem of setB) {
+            _diff.delete(elem)
+          }
+          return _diff
+        }
+      }
+
+      //MARS EXPLORATION
+      function marsExploration(s) {
+        let cnt = 0
+        for (let i = 0; i < s.length; i += 3) {
+          if (s[i] !== 'S') {
+            cnt++
+          }
+          if (s[i + 1] !== 'O') {
+            cnt++
+          }
+          if (s[i + 2] !== 'S') {
+            cnt++
+          }
+        }
+        return cnt
+      }
+    </script>
+  </body>
+</html>
